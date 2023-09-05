@@ -34,10 +34,7 @@ from Navegador.sq_Abrir_Navegador import abri_Navegador
 from Navegador.sq_Baixar_Arquivo import baixar_arquivo
 from Navegador.sq_Preencher_Formulario import preencher_formulario
 
-
-import os 
-
-import pandas as pd
+import os
 
 # Disable errors if we are not connected to Maestro
 BotMaestroSDK.RAISE_NOT_CONNECTED = False
@@ -72,15 +69,10 @@ def main():
 
     # Implement here your logic...
     abri_Navegador("https://rpachallenge.com/", webbot, By)
+    baixar_arquivo(webbot, By, os, var_strCaminhoArquivo)  
+    preencher_formulario (var_strCaminhoArquivo, webbot, By)
+    # Wait 3 seconds before closin
 
-    #baixar_arquivo(webbot, By, os, var_strCaminhoArquivo)
-
-    print("Realizando leitura do arquivo excel..")
-    var_dtArquivo = pd.read_excel(var_strCaminhoArquivo)
-
-    preencher_formulario (var_dtArquivo, webbot, By)
-    
-    # Wait 3 seconds before closing
     webbot.wait(3000)
 
     # Finish and clean up the Web Browser
